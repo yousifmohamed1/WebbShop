@@ -3,15 +3,17 @@ package com.example.demo.Models;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document
-public class Users {
+@Document(collection = "Users")
+public class User {
+
+
     @Id
     private String id;
     private String username;
     private String password;
     private String role;
 
-    public Users(String id, String username, String password, String role) {
+    public User(String id, String username, String password, String role) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -48,5 +50,15 @@ public class Users {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public Role[] getRoles() {
+        String[] roleNames = this.role.split(",");
+        Role[] roles = new Role[roleNames.length];
+        for (int i = 0; i < roleNames.length; i++) {
+            roles[i] = new Role(roleNames[i]);
+        }
+        return roles;
+
     }
 }
