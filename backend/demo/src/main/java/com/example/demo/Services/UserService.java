@@ -28,7 +28,7 @@ public class UserService implements UserDetailsService {
             if (user == null) {
                 throw new UsernameNotFoundException("User not found with username: " + username);
             }
-           // String role = user.getRole();
+
 
             List<GrantedAuthority> authorities = new ArrayList<>();
             for (Role role : user.getRoles()) {

@@ -1,4 +1,6 @@
+
 package com.example.demo.Config;
+
 
 import com.example.demo.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +18,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 
 
-
-
     @Configuration
     @EnableWebSecurity
     @ComponentScan(basePackages = "com.example.demo.Services")
-    //public class SecurityConfig extends WebSecurityConfigurerAdapter {
         public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
         @Autowired
@@ -29,7 +28,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
         @Override
         protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-            auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
+      auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
+
         }
 
         @Override
@@ -41,6 +41,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
                     .antMatchers(HttpMethod.POST, "/api/users/login").permitAll()
                     .anyRequest().authenticated()
                     .and().httpBasic();
+
         }
 
         @Override
@@ -50,10 +51,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
         }
 
         @Bean
-        public PasswordEncoder passwordEncoder() {
-            return new BCryptPasswordEncoder();
+        public PasswordEncoder passwordEncoder(){
+      return new BCryptPasswordEncoder();
+
         }
     }
+
+
 
 
 

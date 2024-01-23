@@ -6,6 +6,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.Optional;
 
 public interface ShoppingCartRepository extends MongoRepository<ShoppingCart,String> {
-    //ShoppingCart findByUser(User user);
     Optional<ShoppingCart> findByUserId(String userId);
 }
